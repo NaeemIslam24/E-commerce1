@@ -23,6 +23,8 @@ def cart(request):
         items = order.orderitem_set.all()
     else:
         items = []
+        # when user not authenticated it works
+        order = {'get_cart_Item_total': 0, 'get_cart_total': 0}
 
     context = {
         'items': items,
