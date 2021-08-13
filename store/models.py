@@ -58,6 +58,7 @@ class Order(models.Model):
         total = sum([item.quantity for item in orderitems])
         return total
 
+# this is to generate transaction id with random module
     def save(self, *args, **kwargs):
         number_list = [x for x in range(10)]
         code_items = []
@@ -77,6 +78,9 @@ class OrderItem(models.Model):
         Order, on_delete=models.SET_NULL, null=True)
     quantity = models.IntegerField(default=0, null=True, blank=True)
     date_added = models.DateTimeField(auto_now_add=True)
+
+
+# to find total price
 
     @property
     def get_total(self):
