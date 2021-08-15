@@ -1,0 +1,19 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block title %}Math{% endblock title %}
+
+{% block content %}
+
+<form  method='POST' action="">
+   {% csrf_token %}
+   {{form.as_p}}
+   
+   <input class="btn btn-success" type="submit" value="Result">
+</form>
+<hr>
+
+<h1>{{math.number1}} {{math.add_sign}} {{math.number2}} = {{math.get_total}}</h1>
+
+
+{% endblock content %}

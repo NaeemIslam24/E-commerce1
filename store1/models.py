@@ -67,3 +67,10 @@ class OrderItem1(models.Model):
     order = models.ForeignKey(Order1,  on_delete=models.SET_NULL, null=True)
     date = models.DateTimeField(auto_now_add=True)
     quantity = models.IntegerField(default=0)
+
+    @property
+    def get_total(self):
+
+        all = self.quantity * self.product.price
+
+        return all
