@@ -1,4 +1,5 @@
 {% extends 'main.html' %}
+{% load crispy_forms_tags %}
 {% load static %}
 
 {% block title %}Math{% endblock title %}
@@ -7,13 +8,13 @@
 
 <form  method='POST' action="">
    {% csrf_token %}
-   {{form.as_p}}
-   
+   {{form|crispy}}
+   <br>
    <input class="btn btn-success" type="submit" value="Result">
 </form>
 <hr>
 
-<h1>{{math.number1}} {{math.add_sign}} {{math.number2}} = {{math.get_total}}</h1>
+<h1>Result: {{math.number1}} {{math.add_sign}} {{math.number2}} = {{math.get_total}}</h1>
 
 
 {% endblock content %}
