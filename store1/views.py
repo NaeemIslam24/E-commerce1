@@ -24,13 +24,14 @@ def cart(request):
         # user app to customer1 app by one to one relation
         customer = request.user.customer1
 
-        order = Order1.objects.get(customer=customer, complete=False)
+        order, created = Order1.objects.get_or_create(
+            customer=customer, complete=False)
 
         items = order.orderitem1_set.all()
 
     context = {
-        'order': customer,
-        'items': items
+        'order': order,
+        'items': items,
 
     }
     return render(request, template_name=template, context=context)

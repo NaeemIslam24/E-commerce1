@@ -8,7 +8,8 @@ def index(request):
     product = Product.objects.all()
 
     context = {
-        'products': product
+        'products': product,
+
     }
 
     return render(request, template_name=template, context=context)
@@ -18,8 +19,6 @@ def cart(request):
     template = 'cart.html'
     if request.user.is_authenticated:
         customer = request.user.customer  # user app to customer app by one to one relation
-        print('---------store----------')
-        print(customer)
 
         order, created = Order.objects.get_or_create(
             customer=customer, complete=False)

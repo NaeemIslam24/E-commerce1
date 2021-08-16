@@ -48,14 +48,21 @@ class Order(models.Model):
 
     @property
     def get_cart_total(self):
+        # chid class is inherited here with "self.orderitem_set.all()"
         orderitems = self.orderitem_set.all()
-        total = sum([item.get_total for item in orderitems])
+
+        # sum function can work with tuple and list. Here it is a list
+        all = [item.get_total for item in orderitems]
+
+        total = sum(all)
         return total
 
     @property
     def get_cart_Item_total(self):
         orderitems = self.orderitem_set.all()
-        total = sum([item.quantity for item in orderitems])
+        all = [item.quantity for item in orderitems]
+        total = sum(all)
+
         return total
 
 # this is to generate transaction id with random module

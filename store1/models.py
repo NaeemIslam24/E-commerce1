@@ -59,6 +59,24 @@ class Order1(models.Model):
         self.transaction_id = code_string
         super().save(*args, **kwargs)
 
+    def total_amount(self):
+        orderitems = self.orderitem1_set.all()
+
+        orders = [item.get_total for item in orderitems]
+
+        all = sum(orders)
+
+        return all
+
+    def total_items(self):
+        orderitems = self.orderitem1_set.all()
+
+        orders = [item.quantity for item in orderitems]
+
+        all = sum(orders)
+
+        return all
+
 
 class OrderItem1(models.Model):
 
