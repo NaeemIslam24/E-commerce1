@@ -8,7 +8,7 @@
 <hr>
 <a href="{% url 'math:index' %}">Math</a>
 <div class="row"> 
- 
+
  
  {% for product in products %}
   <div class="col-lg-4 my-4">
@@ -21,7 +21,7 @@
         <h5 class="card-title">{{product.name}}</h5>
         <hr>
       
-        <a href="{% url 'cart' %}" class="btn btn-outline-secondary">Add to cart</a>
+        <button data-product = {{product.id}} data-action="add"  class="btn btn-outline-secondary update-cart">Add to cart</button>
         <a href="#" class="btn btn-outline-success">view</a>
         <h5 style="float: right;" class="d-inline-block"> {{product.price}}$</h5>  
       </div>

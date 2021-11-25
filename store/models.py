@@ -22,6 +22,7 @@ class Product(models.Model):
     product_image = models.ImageField(null=True, blank=True)
     digital = models.BooleanField(default=False, null=True, blank=True)
 
+
     def __str__(self):
         return self.name
 
@@ -64,6 +65,21 @@ class Order(models.Model):
         total = sum(all)
 
         return total
+    
+    @property
+
+    def shipping(self):
+
+        shipping = False
+
+        orderitems = self.orderitem_set.all()
+
+        for i in orderitems:
+            if i.product.digital == False:
+                shipping = True
+        return shipping
+
+
 
 # this is to generate transaction id with random module
     def save(self, *args, **kwargs):
@@ -81,8 +97,7 @@ class OrderItem(models.Model):
 
     product = models.ForeignKey(
         Product, on_delete=models.SET_NULL, null=True)
-    order = models.ForeignKey(
-        Order, on_delete=models.SET_NULL, null=True)
+    order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True)
     quantity = models.IntegerField(default=0, null=True, blank=True)
     date_added = models.DateTimeField(auto_now_add=True)
 

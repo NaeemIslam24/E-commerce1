@@ -10,14 +10,14 @@ def index(request):
 
     if request.method == 'POST':
 
-        math = Math.objects.get(id=6)
+       math = Math.objects.get(id=1)
 
-        form = MathForm(request.POST, instance=math)
+       form = MathForm(request.POST, instance=math)
 
-        form.save()
+       form.save()
 
     else:
-        math = Math.objects.get(id=6)
+        math = Math.objects.get(id=1)
 
         form = MathForm(instance=math)
 
